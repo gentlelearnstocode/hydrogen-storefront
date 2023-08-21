@@ -1,28 +1,36 @@
-import { useLoaderData } from '@remix-run/react';
-import { LoaderArgs, json } from '@shopify/remix-oxygen';
+import {useLoaderData} from '@remix-run/react';
+import {LoaderArgs, json} from '@shopify/remix-oxygen';
 
-export async function loader({ params, context }: LoaderArgs) {
-  const { handle } = params;
-  const { collection } = await context.storefront.query(COLLECTION_QUERY, {
+import {COLLECTION_QUERY} from './api/queries';
+
+export async function loader({params, context}: LoaderArgs) {
+  const {handle} = params;
+  const {collection} = await context.storefront.query(COLLECTION_QUERY, {
     variables: {
       handle,
     },
   });
 
-  // Handle 404s
   if (!collection) {
-    throw new Response(null, { status: 404 });
+    throw new Response(null, {status: 404});
   }
 
-  // json is a Remix utility for creating application/json responses
-  // https://remix.run/docs/en/v1/utils/json
   return json({
     collection,
   });
 }
 
+const seo = ({data}) => ({
+  title: data?.collection?.title,
+  description: data?.collection?.description.substr(0, 154),
+});
+
+export const handle = {
+  seo,
+};
+
 export default function Collection() {
-  const { collection } = useLoaderData();
+  const {collection} = useLoaderData();
   return (
     <>
       <header className="grid w-full gap-8 py-8 justify-items-start">
@@ -43,13 +51,3 @@ export default function Collection() {
     </>
   );
 }
-
-const COLLECTION_QUERY = `#graphql
-  query CollectionDetails($handle: String!) {
-    collection(handle: $handle) {
-      title
-      description
-      handle
-    }
-  }
-`;

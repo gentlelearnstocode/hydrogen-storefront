@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import type {ReactNode} from 'react';
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -6,7 +6,7 @@ type MainLayoutProps = {
 };
 
 export const MainLayout = (props: MainLayoutProps) => {
-  const { children, title } = props;
+  const {children, title} = props;
 
   return (
     <div className="flex flex-col min-h-screen antialiased bg-neutral-50">

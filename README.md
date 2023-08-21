@@ -40,3 +40,33 @@ npm run build
 ```bash
 npm run dev
 ```
+
+## Project structure
+
+- My Project
+  - README.md
+  - LICENSE
+  - package.json
+  - src
+    - components
+      - Header.js
+      - Footer.js
+    - pages
+      - index.js
+      - about.js
+      - contact.js
+    - styles
+      - main.css
+      - responsive.css
+  - public
+    - images
+      - logo.png
+      - banner.jpg
+  - tests
+    - unit
+      - about.test.js
+      - contact.test.js
+      - home.test.js
+    - integration
+      - api.test.js
+      - routes.test.js
