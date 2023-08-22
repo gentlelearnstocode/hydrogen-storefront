@@ -43,6 +43,7 @@ npm run dev
 
 ## Project structure
 
+```
 root.tsx.              # special entry point file that represents the root of the application's route structure. 
 |
 entry.client.tsx.      # 
@@ -74,38 +75,25 @@ app/
 +-- utils/             # common utility functions that can be reused accross the application.
 |
 +-- styles/            # tailwindcss configuration in case using tailwindcss for styling.
+```
 
 
 ## Routing structure 
 
-root.tsx.              # special entry point file that represents the root of the application's route structure. 
+```
+routes/
 |
-entry.client.tsx.      # 
-|
-entry.server.tsx.      #
-|
-app/
-|
-+-- assets/            # assets folder can contain all the static files such as images, fonts, etc.
-|
-+-- components/        # shared components used across the entire application.
-|
-+-- config/            # all the global configuration, env variables etc. get exported from here and used in the app.
-|
-+-- hooks/             # custom hooks used across the entire application.
-|
-+-- libs/              # re-exporting different libraries preconfigured for the application. E.g. Axios, React Query
-|
-+-- providers/         # all of the application providers
-|
-+-- routes/            # routes configuration
-|
-+-- stores/            # global state stores if needed
-|
-+-- test/              # test utilities and mock server
-|
-+-- types/             # base and share types or interfaces used across the application
-|
-+-- utils/             # common utility functions that can be reused accross the application.
-|
-+-- styles/            # tailwindcss configuration in case using tailwindcss for styling.
++-- _index/
+  |
+  +--route.tsx                  # entry point of a route.
+  |
+  +--api/                       # this folder should contain all API-related operations (GraphQL is used in this example)
+    |
+    +-- queries.ts.             # graphQL queries
+    |
+    +-- mutation.tsx            # graphQL mutations
+  |
+  +--intefaces/                 # this sub-folder contains all interfaces that used in this routes
+    |
+    +-- example.interface.ts.   # interface that defines the shape of fetched or return data or props.
+```
