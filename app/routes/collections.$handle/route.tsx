@@ -1,6 +1,8 @@
 import {useLoaderData} from '@remix-run/react';
 import {LoaderArgs, json} from '@shopify/remix-oxygen';
+import type {Seo} from '@shopify/hydrogen/storefront-api-types';
 
+import {ProductGrid} from '@/components/common';
 import {COLLECTION_QUERY} from './api/queries';
 
 export async function loader({params, context}: LoaderArgs) {
@@ -20,7 +22,7 @@ export async function loader({params, context}: LoaderArgs) {
   });
 }
 
-const seo = ({data}) => ({
+const seo = ({data}): Seo => ({
   title: data?.collection?.title,
   description: data?.collection?.description.substr(0, 154),
 });
@@ -48,6 +50,10 @@ export default function Collection() {
           </div>
         )}
       </header>
+      <ProductGrid
+        collection={collection}
+        url={`/collections/${collection.handle}`}
+      />
     </>
   );
 }
