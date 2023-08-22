@@ -43,30 +43,69 @@ npm run dev
 
 ## Project structure
 
-- My Project
-  - README.md
-  - LICENSE
-  - package.json
-  - src
-    - components
-      - Header.js
-      - Footer.js
-    - pages
-      - index.js
-      - about.js
-      - contact.js
-    - styles
-      - main.css
-      - responsive.css
-  - public
-    - images
-      - logo.png
-      - banner.jpg
-  - tests
-    - unit
-      - about.test.js
-      - contact.test.js
-      - home.test.js
-    - integration
-      - api.test.js
-      - routes.test.js
+root.tsx.              # special entry point file that represents the root of the application's route structure. 
+|
+entry.client.tsx.      # 
+|
+entry.server.tsx.      #
+|
+app/
+|
++-- assets/            # assets folder can contain all the static files such as images, fonts, etc.
+|
++-- components/        # shared components used across the entire application.
+|
++-- config/            # all the global configuration, env variables etc. get exported from here and used in the app.
+|
++-- hooks/             # custom hooks used across the entire application.
+|
++-- libs/              # re-exporting different libraries preconfigured for the application. E.g. Axios, React Query
+|
++-- providers/         # all of the application providers
+|
++-- routes/            # routes configuration
+|
++-- stores/            # global state stores if needed
+|
++-- test/              # test utilities and mock server
+|
++-- types/             # base and share types or interfaces used across the application
+|
++-- utils/             # common utility functions that can be reused accross the application.
+|
++-- styles/            # tailwindcss configuration in case using tailwindcss for styling.
+
+
+## Routing structure 
+
+root.tsx.              # special entry point file that represents the root of the application's route structure. 
+|
+entry.client.tsx.      # 
+|
+entry.server.tsx.      #
+|
+app/
+|
++-- assets/            # assets folder can contain all the static files such as images, fonts, etc.
+|
++-- components/        # shared components used across the entire application.
+|
++-- config/            # all the global configuration, env variables etc. get exported from here and used in the app.
+|
++-- hooks/             # custom hooks used across the entire application.
+|
++-- libs/              # re-exporting different libraries preconfigured for the application. E.g. Axios, React Query
+|
++-- providers/         # all of the application providers
+|
++-- routes/            # routes configuration
+|
++-- stores/            # global state stores if needed
+|
++-- test/              # test utilities and mock server
+|
++-- types/             # base and share types or interfaces used across the application
+|
++-- utils/             # common utility functions that can be reused accross the application.
+|
++-- styles/            # tailwindcss configuration in case using tailwindcss for styling.
