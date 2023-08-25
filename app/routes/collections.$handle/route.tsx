@@ -1,14 +1,17 @@
 import {useLoaderData} from '@remix-run/react';
 import {LoaderArgs, json} from '@shopify/remix-oxygen';
+import {getPaginationVariables} from '@shopify/hydrogen';
 import type {Seo} from '@shopify/hydrogen/storefront-api-types';
 
-import {ProductGrid} from '@/components/common';
+import {ProductGrid} from './components';
 import {COLLECTION_QUERY} from './api/queries';
 
-export async function loader({params, context}: LoaderArgs) {
+export const loader = async ({params, context, request}: LoaderArgs) => {
+  const paginationVariables = getPaginationVariables(request, {pageBy: 4});
   const {handle} = params;
   const {collection} = await context.storefront.query(COLLECTION_QUERY, {
     variables: {
+      ...paginationVariables,
       handle,
     },
   });
@@ -20,7 +23,7 @@ export async function loader({params, context}: LoaderArgs) {
   return json({
     collection,
   });
-}
+};
 
 const seo = ({data}): Seo => ({
   title: data?.collection?.title,
@@ -31,7 +34,7 @@ export const handle = {
   seo,
 };
 
-export default function Collection() {
+const Collection = () => {
   const {collection} = useLoaderData();
   return (
     <>
@@ -56,4 +59,6 @@ export default function Collection() {
       />
     </>
   );
-}
+};
+
+export default Collection;

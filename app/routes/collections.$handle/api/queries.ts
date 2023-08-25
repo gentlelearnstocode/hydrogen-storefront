@@ -1,11 +1,22 @@
 export const COLLECTION_QUERY = `#graphql
-  query CollectionDetails($handle: String!) {
+    query CollectionDetails(
+    $handle: String!
+    $first: Int
+    $last: Int
+    $startCursor: String
+    $endCursor: String
+  ) {
     collection(handle: $handle) {
       id
       title
       description
       handle
-      products(first: 4) {
+      products(
+        first: $first,
+        last: $last,
+        before: $startCursor,
+        after: $endCursor,
+      ) {
         nodes {
           id
           title
@@ -30,6 +41,12 @@ export const COLLECTION_QUERY = `#graphql
               }
             }
           }
+        }
+        pageInfo {
+          hasPreviousPage
+          hasNextPage
+          hasNextPage
+          endCursor
         }
       }
     }
